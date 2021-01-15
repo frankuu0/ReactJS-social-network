@@ -1,9 +1,11 @@
 .nav {
+    height: 600px;
     grid-area: n;
     background-color: burlywood;
 }
 
 .item {
+    margin: 5px;
     color: white;
 }
 
