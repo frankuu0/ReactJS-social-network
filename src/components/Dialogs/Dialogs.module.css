@@ -1,0 +1,12 @@
+.dialogsWrapper{
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+}
+
+.dialog{
+    padding: 3px;
+}
+
+.message{
+    padding: 3px;
+}
