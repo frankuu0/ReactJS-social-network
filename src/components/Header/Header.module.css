@@ -1,9 +1,17 @@
 .header {
     grid-area: h;
-    background-color: green;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 10px;
+    padding: 20px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 8px;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
 }
 
-.header img {
-    width: 20px;
+header span {
+    font-size: 20px;
 }
 
