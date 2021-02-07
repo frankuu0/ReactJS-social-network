@@ -1,4 +1,5 @@
 .nav {
+    top: 100px;
     height: 600px;
     grid-area: n;
     box-sizing: border-box;

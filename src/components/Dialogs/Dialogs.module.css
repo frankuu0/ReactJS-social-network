@@ -11,3 +11,12 @@
 .message{
     padding: 3px;
 }
+
+.dialog img {
+    width: 30px;
+}
+
+.dialog a {
+    display: flex;
+    align-items: center;
+}
