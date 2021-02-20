@@ -12,18 +12,23 @@ const MyPosts = (props) => {
   let postsElements = props.posts.map( p =>  <Post message={p.message} likes={p.likes} id={p.id}/>)
   let newPostElement = React.createRef();
   let addPost = () => {
-    props.addPost();
+    // props.addPost();
+    props.dispatch({type: 'ADD-POST'});
+    let refresh  = document.getElementById('typePostText');
+    refresh.value="";
+
   };
   let onPostChange = () => {
     let text = newPostElement.current.value;
-    props.updateNewPostText(text);
+    // props.updateNewPostText(text);
+    props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text});
   };
 
   return (
     <div>
       My posts
       <div>
-        <textarea cols="80" rows="3" ref={newPostElement} value={props.newPostText} onChange={onPostChange}/>
+        <textarea  id="typePostText" cols="80" rows="3" ref={newPostElement} onChange={onPostChange}/>
         <button onClick={addPost}>Add post</button>
       </div>
       <div className={s.posts}>

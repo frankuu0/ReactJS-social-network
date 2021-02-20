@@ -5,7 +5,7 @@ let store = {
                 {id: 1, message: 'random post text', likes: '81'},
                 {id: 2, message: 'random post text#2', likes: '73'},
             ],
-            newPostText: 'Hi! Write some cool text here =)'
+            // newPostText: 'ggg'
         },
         dialogsPage: {
             dialogs: [
@@ -28,22 +28,37 @@ let store = {
     _renderEntireTree() {
         // console.log('eee');
     },
-    addPost() {
-        let newPost = {
-            id: Math.floor(Math.random()*1000),
-            message: this._state.profilePage.newPostText,
-            likes: 0
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._renderEntireTree(this._state);
-    },
-    updateNewPostText(newText) {
-        this._state.profilePage.newPostText = newText;
-        this._renderEntireTree(this._state);
-    },
+    // addPost() {
+    //     let newPost = {
+    //         id: Math.floor(Math.random()*1000),
+    //         message: this._state.profilePage.newPostText,
+    //         likes: 0
+    //     };
+    //     this._state.profilePage.posts.push(newPost);
+    //     this._state.profilePage.newPostText = '';
+    //     this._renderEntireTree(this._state);
+    // },
+    // updateNewPostText(newText) {
+    //     this._state.profilePage.newPostText = newText;
+    //     this._renderEntireTree(this._state);
+    // },
     subscribe(observer) {
         this._renderEntireTree = observer;
+    },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            let newPost = {
+                id: Math.floor(Math.random()*1000),
+                message: this._state.profilePage.newPostText,
+                likes: 0
+            }
+            this._state.profilePage.posts.push(newPost);
+            // this._state.profilePage.newPostText = '';   Обновление состояния теперь происходит локально в addPost внутри MyPosts
+            this._renderEntireTree(this._state);
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText;
+            this._renderEntireTree(this._state);
+        }
     }
 }
 
