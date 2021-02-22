@@ -1,5 +1,9 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY';
+const SEND_MESSAGE = 'SEND_MESSAGE';
+
+
 
 let store = {
     _state: {
@@ -22,7 +26,8 @@ let store = {
                 {id: 2, message: 'Hi?'},
                 {id: 3, message: 'Who said hi?'},
                 {id: 4, message: 'Im said hi.'},
-            ]
+            ],
+            newMessageBody: ""
         }
     },
     getState() {
@@ -63,6 +68,15 @@ let store = {
         } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
             this._renderEntireTree(this._state);
+        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+            this._state.dialogsPage.newMessageBody = action.body;
+            this._renderEntireTree(this._state);
+        } else if (action.type === SEND_MESSAGE) {
+            let newMessage = this._state.dialogsPage.newMessageBody;
+            let refresh = document.getElementById('typeMessageText');
+            refresh.value = '';
+            this._state.dialogsPage.messages.push({id: 6, message: newMessage});
+            this._renderEntireTree(this._state);
         }
     }
 }
@@ -76,5 +90,15 @@ export const updateNewPostTextActionCreator = (text) => {
       type: UPDATE_NEW_POST_TEXT, newText: text
     }
   }
-
+  export const sendMessageActionCreator = () => {
+    return {
+      type: SEND_MESSAGE
+    }
+  }
+export const updateNewMessageActionCreator = (body) => {
+    return {
+      type: UPDATE_NEW_MESSAGE_BODY, body: body
+    }
+  }
+window.store = store;
 export default store;
