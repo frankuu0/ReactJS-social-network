@@ -13,18 +13,20 @@ const MyPosts = (props) => {
 
   let postsElements = props.posts.map( p =>  <Post message={p.message} likes={p.likes} id={p.id}/>)
   let newPostElement = React.createRef();
+
+  
   let addPost = () => {
-    // props.addPost();
-    props.dispatch(addPostActionCreator());
+    props.addPost();
+    // props.dispatch(addPostActionCreator());
     // let refresh  = document.getElementById('typePostText');
     // refresh.value="";
 
   };
   let onPostChange = () => {
     let text = newPostElement.current.value;
-    // props.updateNewPostText(text);
-    let action = updateNewPostTextActionCreator(text);
-    props.dispatch(action);
+    props.updateNewPostText(text);
+    //let action = updateNewPostTextActionCreator(text);
+    //props.dispatch(action);
   };
 
   return (

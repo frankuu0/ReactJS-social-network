@@ -7,6 +7,7 @@ import { sendMessageActionCreator, updateNewMessageActionCreator } from '../../r
 
 
 const Dialogs = (props) => {
+    
 
     let dialogsElements = props.dialogs.map( d => <DialogItem name={d.name} id={d.id}/> );
 
@@ -17,11 +18,13 @@ const Dialogs = (props) => {
     let newMessageElement = React.createRef();
     let onSendMessageClick = () => {
         // let text = newMessageElement.current.value;
-        props.dispatch(sendMessageActionCreator());
+        props.sendMessage();
+        // props.dispatch(sendMessageActionCreator());
     }
     let onNewMessageChange = (e) => {
         let body = e.target.value;
-        props.dispatch(updateNewMessageActionCreator(body));
+        props.updateNewMessage(body);
+        // props.dispatch(updateNewMessageActionCreator(body));
     }
 
     return(
